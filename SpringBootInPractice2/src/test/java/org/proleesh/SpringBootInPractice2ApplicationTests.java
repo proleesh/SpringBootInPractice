@@ -85,4 +85,17 @@ class SpringBootInPractice2ApplicationTests {
         assertThat(courseRepository.findById(savedCourse.getId()).get().getRating()).isEqualTo(5);
     }
 
+    @Test
+    public void givenDeleteCourseWhenLoadTheCourseThenExpectDeletedCourse(){
+        Course course = new Course("Rapid Spring Boot Application Development",
+                "Spring", 4, "Spring Boot gives all the power of the Spring Framework without all of the complexities");
+        Course savedCourse = courseRepository.save(course);
+
+        assertThat(courseRepository.findById(savedCourse.getId()).get()).isEqualTo(course);
+
+        courseRepository.delete(savedCourse);
+
+        assertThat(courseRepository.findById(savedCourse.getId()).isPresent()).isFalse();
+    }
+
 }
