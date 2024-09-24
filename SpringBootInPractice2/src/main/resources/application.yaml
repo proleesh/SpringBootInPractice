@@ -9,6 +9,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: password
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
 #    mongodb:
 #      uri: mongodb+srv://admin:admin@cluster0.k3w02.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 #      port: 27017

@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS COURSES;
 CREATE TABLE COURSES
 (
-    id          int(15)       NOT NULL,
+    id          int(15)       NOT NULL AUTO_INCREMENT,
     name        varchar(100)  NOT NULL,
     category    varchar(20)   NOT NULL,
     rating      int(1)        NOT NULL,

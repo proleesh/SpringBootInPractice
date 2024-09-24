@@ -4,6 +4,8 @@ import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.proleesh.entity.Course;
+import org.proleesh.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -58,6 +60,19 @@ class SpringBootInPractice2ApplicationTests {
                 rs.close();
             }
         }
+    }
+
+    @Autowired
+    private CourseRepository courseRepository;
+
+    @Test
+    public void givenCreateCourseWhenLoadTheCourseThenExpectSameCourse(){
+        Course course = new Course("Rapid Spring Boot Application Development",
+                "Spring", 4, "Spring Boot gives all the power of the Spring Framework without all of the complexities");
+
+        Course savedCourse = courseRepository.save(course);
+
+        assertThat(courseRepository.findById(savedCourse.getId()).get()).isEqualTo(course);
     }
 
 
