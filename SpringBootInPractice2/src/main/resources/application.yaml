@@ -1,9 +1,16 @@
 spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://admin:admin@cluster0.k3w02.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      port: 27017
-      host: localhost
-      database: springboot
-      username: admin
-      password: admin
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: jdbc:mysql://localhost:3306/springbpdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: password
+#    mongodb:
+#      uri: mongodb+srv://admin:admin@cluster0.k3w02.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+#      port: 27017
+#      host: localhost
+#      database: springboot
+#      username: admin
+#      password: admin
