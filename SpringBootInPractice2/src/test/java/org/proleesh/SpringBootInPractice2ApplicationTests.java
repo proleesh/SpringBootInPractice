@@ -10,26 +10,54 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-@DataMongoTest
-@ExtendWith(SpringExtension.class)
+import static org.assertj.core.api.Assertions.assertThat;
+//
+//@DataMongoTest
+//@ExtendWith(SpringExtension.class)
+@SpringBootTest
 class SpringBootInPractice2ApplicationTests {
+//    @Autowired
+//    private MongoTemplate mongoTemplate;
+
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private DataSource dataSource;
+
+//    @Test
+//    public void givenObjectAvailableWhenSaveToCollectionThenExpectValue(){
+//        // given
+//        DBObject object = BasicDBObjectBuilder.start()
+//                .add("Manning", "Spring Boot In Practice").get();
+//        // when
+//        mongoTemplate.save(object, "collection");
+//
+//        // then
+//        assertThat(mongoTemplate.findAll(DBObject.class, "collection"))
+//                .extracting("Manning")
+//                .containsOnly("Spring Boot In Practice");
+//    }
 
     @Test
-    public void givenObjectAvailableWhenSaveToCollectionThenExpectValue(){
-        // given
-        DBObject object = BasicDBObjectBuilder.start()
-                .add("Manning", "Spring Boot In Practice").get();
-        // when
-        mongoTemplate.save(object, "collection");
+    public void whenCountCoursesThenExpectFiveCourses() throws SQLException {
+        ResultSet rs = null;
+        int noOfCourses = 0;
 
-        // then
-        assertThat(mongoTemplate.findAll(DBObject.class, "collection"))
-                .extracting("Manning")
-                .containsOnly("Spring Boot In Practice");
+        try(PreparedStatement ps = dataSource.getConnection()
+                .prepareStatement("select COUNT(1) from COURSES")){
+            rs = ps.executeQuery();
+            while(rs.next()){
+                noOfCourses = rs.getInt(1);
+            }
+            assertThat(noOfCourses).isEqualTo(5L);
+        }finally{
+            if(rs != null){
+                rs.close();
+            }
+        }
     }
 
 
