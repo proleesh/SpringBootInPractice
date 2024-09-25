@@ -13,3 +13,10 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: create-drop
+server:
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/sbip.p12
+    key-store-password: p@ssw0rd
+    key-alias: sbip
+  port: 443

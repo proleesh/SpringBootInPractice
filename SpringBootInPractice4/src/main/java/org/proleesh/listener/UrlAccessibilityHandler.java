@@ -6,7 +6,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class UrlAccessibilityHandler {
     @Value("${api.url:https://dog.ceo/}")
     private String url;
