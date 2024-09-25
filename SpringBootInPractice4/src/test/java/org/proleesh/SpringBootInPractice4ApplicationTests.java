@@ -3,7 +3,6 @@ package org.proleesh;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQuery;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.proleesh.entity.Course;
@@ -19,7 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class SpringBootInPractice4ApplicationTests {
-
 	@Autowired
 	private CourseRepository courseRepository;
 	@Autowired
@@ -57,5 +55,7 @@ class SpringBootInPractice4ApplicationTests {
 
 		return Arrays.asList(rapidSpringBootCourse, springSecurityDslCourse, springCloudKubernatesCourse, rapidPythonCourse);
 	}
+
+
 
 }
