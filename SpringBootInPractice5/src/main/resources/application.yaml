@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    vault:
+      token: hvs.xg0tFdpRIFILSI9mO6OVzsCQ
+      authentication: token
+      host: localhost
+      port: 8200
+      scheme: http
+  config:
+    import: vault://secret/coursetracker
+  application:
+    name: coursetracker
+server:
+  ssl:
+    key-store-password: ${keystore}
